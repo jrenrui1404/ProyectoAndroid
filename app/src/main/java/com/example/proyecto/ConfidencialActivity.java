@@ -41,7 +41,6 @@ public class ConfidencialActivity extends AppCompatActivity {
         val.setText("Usuario: " + BaseDatos.getInstance().getNombre());
 
         //navegacion
-        binding.bottonNs
 
         //api
         btn_entrar_pokemon = findViewById(R.id.btn_entrar_pokemon);
