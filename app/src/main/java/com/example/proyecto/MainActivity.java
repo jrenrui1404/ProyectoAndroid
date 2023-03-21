@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView mensaje;
 
     private Realm con;
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +39,12 @@ public class MainActivity extends AppCompatActivity {
         nombre=findViewById(R.id.usuario);
         password=findViewById(R.id.password);
         mensaje = findViewById(R.id.error);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         con = BaseDatos.getInstance().conectar(getBaseContext());
         long cuantos = con.where(Usuario.class).count();
         if(cuantos==0){
-            //admin, admin
             mostrarRegistro();
-
         }
 
         Button login = findViewById(R.id.button_entrar);
@@ -59,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 mostrarRegistro();
             }
         });
-
 
     }
 
@@ -87,6 +89,13 @@ public class MainActivity extends AppCompatActivity {
                     con.beginTransaction();
                     con.copyToRealmOrUpdate(u);
                     con.commitTransaction();
+
+                    //mod shared
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("logged_in", true);
+                    editor.apply();
+                    //mod shared
+
                 }catch (Exception e){
                     e.printStackTrace();
                     Toast.makeText(getBaseContext(), "No se pudo registrar " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -102,9 +111,10 @@ public class MainActivity extends AppCompatActivity {
 
         Usuario u = con.where(Usuario.class).equalTo("nombre", nombre.getText().toString()).findFirst();
         if(u==null){
-            mensaje.setText("Usuario no encontrado");
+            mensaje.setText("Coche no encontrado");
         }else {
             if(u.getPassword().equals(password.getText().toString())){
+
                 BaseDatos.getInstance().setNombre(nombre.getText().toString());
                 Intent i = new Intent(this, ConfidencialActivity.class);
                 startActivity(i);

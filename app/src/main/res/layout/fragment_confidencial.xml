@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment_confidencial">
+
+    <Button
+        android:id="@+id/botonCambiarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="14dp"
+        android:text="Cambiar Usuario" />
+
+    <EditText
+        android:id="@+id/in_consulta"
+        android:layout_width="230dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nombre" />
+
+    <Button
+        android:id="@+id/btn_entrar_pokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="top|right"
+        android:text="Consultar" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:text="Versión 1.0"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/usuario_validado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        />
+
+</FrameLayout>

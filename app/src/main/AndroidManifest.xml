@@ -17,6 +17,9 @@
             android:name=".Consulta_Activity"
             android:exported="false" />
         <activity
+            android:name=".Consulta_Fragment"
+            android:exported="true" />
+        <activity
             android:name=".UserChangeActivity"
             android:exported="false" />
         <activity

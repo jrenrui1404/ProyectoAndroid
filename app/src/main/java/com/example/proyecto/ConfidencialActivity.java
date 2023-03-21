@@ -1,93 +1,61 @@
 package com.example.proyecto;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.MenuItem;
 
-import com.example.proyecto.databinding.ActivityMainBinding;
-import com.example.proyecto.db.BaseDatos;
-import com.example.proyecto.modelo.ModeloRetorno;
-import com.google.android.material.textfield.TextInputEditText;
-
-import java.security.spec.ECField;
-import java.util.concurrent.ConcurrentSkipListMap;
+import com.example.proyecto.fragment.FingerFragment;
+import com.example.proyecto.fragment.ProfileFragment;
+import com.example.proyecto.modeloCrud.CrudFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ConfidencialActivity extends AppCompatActivity {
 
-    public Button btn_entrar_pokemon;
-    public EditText txtConsulta;
-    public String respuesta = "", imagen = "";
-    public ModeloRetorno pokedex = new ModeloRetorno();
-
-    ActivityMainBinding binding;
+    BottomNavigationView botton_navegation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_confidencial);
 
-        //usuario validado
-        TextView val = findViewById(R.id.usuario_validado);
-        val.setText("Usuario: " + BaseDatos.getInstance().getNombre());
-
         //navegacion
-
-        //api
-        btn_entrar_pokemon = findViewById(R.id.btn_entrar_pokemon);
-        txtConsulta = findViewById(R.id.in_consulta);
-        btn_entrar_pokemon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ConsultarApi rg = new ConsultarApi();
-                try{
-                    rg.respuesta(txtConsulta.getText().toString());
-                    muestraToast("Procesando...");
-                    final Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            pokedex = rg.modeloRetorno;
-                            respuesta = "ID: " + pokedex.getId() + "\n" +
-                                    "Nombre: " + pokedex.getName() + "\n" +
-                                    "Altura: " + pokedex.getHeight() + "\n" +
-                                    "Peso: " + pokedex.getWeight();
-                            imagen = pokedex.getFront_default();
-                            if(!respuesta.equals("")){
-                                Intent intent = new Intent(ConfidencialActivity.this, Consulta_Activity.class);
-
-                                intent.putExtra("informacion", respuesta);
-                                intent.putExtra("imagen", imagen);
-                                startActivity(intent);
-                            }
-                        }
-                    }, 5000);
-                } catch (Exception ex){
-                    muestraToast("Error: " + ex);
-                }
-            }
+        botton_navegation = (BottomNavigationView) findViewById(R.id.botton_navegation);
+        botton_navegation.setOnItemSelectedListener(item -> {
+            menuItemNavigation(item);
+            return true;
         });
+
+        replaceFragment(new fragment_confidencial());
+
     }
 
-    public void irUser(View v){
-        Intent i = new Intent(this, UserChangeActivity.class);
-        startActivity(i);
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frame_layout, fragment);
+        ft.commit();
     }
 
-    public void muestraToast(String mensaje){
-        Toast.makeText(this, "" + mensaje, Toast.LENGTH_SHORT).show();
-    }
+    private void menuItemNavigation(MenuItem item) {
 
+        switch (item.getItemId()) {
+            case R.id.home:
+                replaceFragment(new fragment_confidencial());
+                break;
+            case R.id.profile:
+                replaceFragment(new CrudFragment());
+                break;
+            case R.id.person:
+                replaceFragment(new item_list_pokemon());
+                break;
+            default:
+                break;
+        }
+
+    }
 
 }

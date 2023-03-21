@@ -1,5 +1,8 @@
 package com.example.proyecto.modelo;
 
+import com.example.proyecto.modeloCrud.Coche;
+
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -7,7 +10,6 @@ public class Usuario extends RealmObject {
 
     @PrimaryKey
     private String id;
-
     private String nombre;
     private String password;
 

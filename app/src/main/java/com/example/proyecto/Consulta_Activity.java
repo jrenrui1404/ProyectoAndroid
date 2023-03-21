@@ -19,13 +19,16 @@ public class Consulta_Activity extends AppCompatActivity {
     String temp;
     Button btn_volver;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta);
+
         txt_info=findViewById(R.id.txt_info);
         img1=findViewById(R.id.imageView);
         btn_volver=findViewById(R.id.btn_volver);
+
         Bundle extras = getIntent().getExtras();
         String informacion = extras.getString("informacion");
         String imagen = extras.getString("imagen");

@@ -6,9 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ConfidencialActivity">
 
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="409dp"
+        android:layout_height="666dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/botton_navegation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottonNavegationView"
+        android:id="@+id/botton_navegation"
         android:layout_width="410dp"
         android:layout_height="61dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,59 +32,4 @@
         app:layout_constraintVertical_bias="0.997"
         app:menu="@menu/bottom_nav_menu"/>
 
-    <FrameLayout
-        android:layout_width="409dp"
-        android:layout_height="666dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottonNavegationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-
-        <Button
-            android:id="@+id/botonCambiarUsuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="14dp"
-            android:onClick="irUser"
-            android:text="Cambiar Usuario" />
-
-        <EditText
-            android:id="@+id/in_consulta"
-            android:layout_width="230dp"
-            android:layout_height="71dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="20dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Nombre" />
-
-        <Button
-            android:id="@+id/btn_entrar_pokemon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="80dp"
-            android:layout_gravity="top|right"
-            android:text="Consultar" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:text="Confidencial"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/usuario_validado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
-            />
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

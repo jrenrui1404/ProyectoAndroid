@@ -34,6 +34,7 @@ public class UserChangeActivity extends AppCompatActivity {
         usuario.setText(u.getNombre());
         usuario.setText(u.getPassword());
 
+
         Button boton = findViewById(R.id.boton_guardar);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override

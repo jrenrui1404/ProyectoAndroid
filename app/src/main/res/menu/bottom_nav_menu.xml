@@ -7,10 +7,10 @@
 
     <item android:id="@+id/profile"
           android:icon="@drawable/baseline_fingerprint_24"
-          android:title="Profile"/>
+          android:title="Vehículos"/>
 
     <item android:id="@+id/person"
           android:icon="@drawable/baseline_person_24"
-          android:title="Fingerprint" />
+          android:title="Pokemon" />
 
 </menu>

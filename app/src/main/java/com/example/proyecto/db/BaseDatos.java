@@ -11,14 +11,13 @@ public class BaseDatos {
     public static BaseDatos getInstance(){
         return instance;
     }
-
     private Realm con;
     private String nombre;
 
     public Realm conectar(Context context){
         if (con == null){
             Realm.init(context);
-            String nombre="ejemplo_login_v5";
+            String nombre="ejemplo_login_v8";
             RealmConfiguration config = new RealmConfiguration.Builder().name(nombre).build();
             con = Realm.getInstance(config);
         }
